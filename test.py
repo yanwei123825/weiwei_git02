@@ -1,13 +1,33 @@
 # 数值累加脚本：计算 1 ~ n 的总和
 def sum_num(n):
+    """循环方式计算 1 到 n 连续整数累加和"""
     total = 0
     for i in range(1, n + 1):
         total = total + i
     return total
 
+def sum_formula(n):
+    """数学公式 n*(n+1)/2 快速求和，对比循环结果"""
+    return n * (n + 1) // 2
+
 # 主程序入口
 if __name__ == "__main__":
-    # 设置累加上限，可自行修改数字
-    max_num = 100
-    result = sum_num(max_num)
-    print(f"1 到 {max_num} 的累加结果为：{result}")
+    print("===== 1~n 整数累加计算器 =====")
+    # 循环接收合法数字输入
+    while True:
+        input_str = input("请输入一个正整数作为累加上限：")
+        try:
+            max_num = int(input_str)
+            if max_num > 0:
+                break
+            else:
+                print("错误：请输入大于0的正整数！")
+        except ValueError:
+            print("错误：输入不是有效数字，请重新输入！")
+    
+    # 两种方式计算
+    loop_result = sum_num(max_num)
+    formula_result = sum_formula(max_num)
+
+    print(f"\n循环计算结果：1 到 {max_num} 的累加和 = {loop_result}")
+    print(f"公式快速计算结果：1 到 {max_num} 的累加和 = {formula_result}")
